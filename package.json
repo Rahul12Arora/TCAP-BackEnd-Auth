@@ -1,0 +1,27 @@
+{
+  "name": "tcap-backend-auth",
+  "version": "1.0.0",
+  "description": "back end authorization app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rahul12Arora/TCAP-BackEnd-Auth.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.8.2"
+  },
+  "bugs": {
+    "url": "https://github.com/Rahul12Arora/TCAP-BackEnd-Auth/issues"
+  },
+  "homepage": "https://github.com/Rahul12Arora/TCAP-BackEnd-Auth#readme"
+}
