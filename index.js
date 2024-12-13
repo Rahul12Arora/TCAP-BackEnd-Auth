@@ -4,12 +4,12 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const userRouter = require("./routes/userRoute");
 const port = process.env.PORT || 5003;
-
+const getDb = require('./startup/dbConnection')
 dotenv.config();
 
 const app = express();
 app.use(express.json());
-
+getDb();
 app.use(cors());
 
 app.get("/", (req, res) => {
