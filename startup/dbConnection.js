@@ -1,16 +1,22 @@
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 const uri = "mongodb+srv://rahul012arora:tAL43E364xYa9Wbw@tcap.cgyuo.mongodb.net/?retryWrites=true&w=majority&appName=TCAP";
-const client = new MongoClient(uri);
-let isConnected = false;
 
-async function getDb() {
-  if (!isConnected) {
-    await client.connect();
-    isConnected = true;
-    console.log("Database connected");
-  }
-  return client.db('sample_mflix');
+let database = null;
+
+async function getDatabase() {
+    if (!database) {
+        try {
+            await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+            console.log('DB Connected Successfully');
+            database = mongoose.connection.db;
+        } catch (err) {
+            console.error('Error in connection: ' + err);
+            throw err;
+        }
+    }
+    return database;
 }
 
-module.exports = getDb;
+module.exports = getDatabase;
