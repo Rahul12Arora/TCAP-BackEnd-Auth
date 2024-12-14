@@ -8,7 +8,7 @@ let database = null;
 async function getDatabase() {
     if (!database) {
         try {
-            await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+            await mongoose.connect(uri, { dbName:"test", useNewUrlParser: true, useUnifiedTopology: true });
             console.log('DB Connected Successfully');
             database = mongoose.connection.db;
         } catch (err) {
