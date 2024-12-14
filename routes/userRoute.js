@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.post("/register", async (req, res) => {
   try {
-    console.log("Hitting Register Route");
     const { name, email, password } = req.body;
     const hashPassword = await bcrypt.hash(password, 10);
 
@@ -22,7 +21,7 @@ router.post("/register", async (req, res) => {
       token,
     });
   } catch (err) {
-    console.log("Error -> ", err);
+    console.error("Error -> ", err);
     res.status(500).json({
       error: err.message,
     });
@@ -31,6 +30,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
+
     const { email, password } = req.body;
     if (!email || !password) {
       return res.status(400).json({
@@ -65,6 +65,32 @@ router.post("/login", async (req, res) => {
     res.status(500).json({
       error: err.message,
     });
+  }
+});
+
+router.get("/getAllUser", async (req, res) => {
+  try {
+      const users = await User.find().select(
+          "name email createdAt updatedAt chatGroups active"
+      );
+
+      res.status(200).json(users);
+  } catch (error) {
+      console.error("Error -> ", error);
+      res.status(400).json(error);
+  }
+});
+
+router.get("/getAllChatGroupOfAUser/:userId", async (req, res) => {
+  try {
+      const { userId } = req.params;
+      const userDetails = await User.findById({_id: userId}).populate("chatGroups");
+      userDetails.password = "";
+
+      res.status(200).json(userDetails);
+  } catch (error) {
+      console.error("Error -> ", error);
+      res.status(400).json(error);
   }
 });
 

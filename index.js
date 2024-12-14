@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const userRouter = require("./routes/userRoute");
+const UserRouter = require("./routes/userRoute");
+const ChatGroupRouter = require("./routes/ChatGroupRoutes");
 const port = process.env.PORT || 5003;
 const getDb = require('./startup/dbConnection')
 const listCollections = require('./startup/listCollections')
@@ -22,7 +23,8 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/user", userRouter);
+app.use("/user", UserRouter);
+app.use("/chat-group", ChatGroupRouter);
 
 mongoose.set("strictQuery", true);
 

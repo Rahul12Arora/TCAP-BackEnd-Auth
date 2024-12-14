@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
   {
     name: {
       type: String,
@@ -19,6 +20,14 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please enter the Password"],
       min: 5,
     },
+    active: {
+      type: Boolean,
+      default: true,
+    },
+    chatGroups: [{
+        type: Schema.Types.ObjectId,
+        ref: 'ChatGroup',
+    }]
   },
   { timestamps: true }
 );
