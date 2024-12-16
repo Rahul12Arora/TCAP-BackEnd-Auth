@@ -18,7 +18,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^6.8.2"
+    "mongoose": "^6.8.2",
+    "socket.io": "^4.8.1"
   },
   "bugs": {
     "url": "https://github.com/Rahul12Arora/TCAP-BackEnd-Auth/issues"
