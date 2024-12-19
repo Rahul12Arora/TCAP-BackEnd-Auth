@@ -4,14 +4,12 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const UserRouter = require("./routes/userRoute");
 const ChatGroupRouter = require("./routes/ChatGroupRoutes");
-const port = process.env.PORT || 8080;
 const getDb = require('./startup/dbConnection')
 const listCollections = require('./startup/listCollections')
 const startSocketConnection = require("./startup/socketIO");
 const { Server } = require('socket.io');
 const http = require('http');
 dotenv.config();
-console.log("port -> ", port);
 
 const app = express();
 app.use(express.json());
@@ -22,7 +20,7 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:3001", // Dynamic frontend URL
+    origin: process.env.FRONTEND_URL, // Dynamic frontend URL
     methods: ["GET", "POST"],
   },
 });
@@ -92,8 +90,8 @@ app.use("/chat-group", ChatGroupRouter);
 
 mongoose.set("strictQuery", true);
 
-server.listen(port, () => {
-    console.log('Server started at port ' + port);
+server.listen(process.env.PORT, () => {
+    console.log('Server started at port ' + process.env.PORT);
 });
 
 // Error handling middleware
