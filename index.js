@@ -22,7 +22,7 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:3001", // Dynamic frontend URL
+    origin: process.env.FRONTEND_URL || "http://localhost:3000", // Dynamic frontend URL
     methods: ["GET", "POST"],
   },
 });
@@ -39,6 +39,8 @@ io.on('connection', (socket) => {
   // Join a room
   socket.on('JoinRoom', (payload) => {
     console.log("Payload room -> ", payload);
+
+    //joining room
     socket.join(payload.roomId);
     socket.leave(payload.oldRoomId);
     console.log(`User ${payload.userName} joined room: ${payload.roomName}`);
@@ -47,6 +49,7 @@ io.on('connection', (socket) => {
     // Notify others in the room
     // socket.to(room).emit('message', `${socket.id} has joined the room.`);
     socket.to(payload.roomId).emit('RoomJoined', { payload });
+    socket.to(payload.roomId).emit('message', { payload });
   });
 
   // Example of listening to an event
@@ -62,7 +65,8 @@ io.on('connection', (socket) => {
     //   // callback('Message delivered successfully');
     // });
     if (io.sockets.adapter.rooms.get(data.room)) {
-      io.to(data.room).emit('message', data.payload, () => {
+      console.log('data is ',data)
+      socket.to(data.room).emit('message', data.payload, () => {
         console.log("Message delivered to clients in room:", data.room);
         // callBack('Message delivered successfully');
       });
@@ -70,7 +74,7 @@ io.on('connection', (socket) => {
       console.log("Room does not exist:", data.room);
       callBack('Room does not exist');
     }
-    // io.emit('message', data);
+    // io.emit('message', 'line 77 emit');
   });
 
   // Handle disconnection
@@ -86,6 +90,7 @@ app.get("/", (req, res) => {
     message: "Home",
   });
 });
+
 
 app.use("/user", UserRouter);
 app.use("/chat-group", ChatGroupRouter);
