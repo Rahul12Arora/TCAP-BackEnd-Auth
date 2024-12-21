@@ -6,7 +6,8 @@ function groupSocketHandler (socket, io) {
 
     //joining room
     socket.join(payload.roomId);
-    socket.leave(payload.oldRoomId);
+    // Commenting this line so that when user logins he can connect to all groups
+    // socket.leave(payload.oldRoomId);
     console.log(`User ${payload.userName} joined room: ${payload.roomName}`);
     // userMap[socket.id] = payload.userName;
 

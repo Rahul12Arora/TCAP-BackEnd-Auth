@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).populate("chatGroups");;
     if (!user) {
       return res.status(404).json({
         message: "Email is not registered!",
