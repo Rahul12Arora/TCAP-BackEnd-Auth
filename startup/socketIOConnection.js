@@ -40,7 +40,7 @@ function socketConnection (io) {
 
   io.of("/groupChat").on("connection", (socket) => {
     console.log('a user connected to /groupChat namespace')
-    groupSocketHandler(socket)
+    groupSocketHandler(socket,io)
   });
 
   io.of("/notifications").on("connection", (socket) => {
