@@ -5,6 +5,10 @@ const socketConnection = require('./startup/socketIOConnection'); // Socket.IO l
 const routes = require('./routes/routes'); // Express routes
 const cors = require("cors");
 const port = 8080;
+const mongoose = require("mongoose");
+require('./startup/dbConnection')()
+require('./startup/listCollections')
+mongoose.set("strictQuery", true);
 
 const app = express();
 app.use(cors({
