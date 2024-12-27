@@ -5,18 +5,21 @@ const User = require("../models/User.js");
 
 router.post("/createNewChatGroup", async (req, res) => {
     try {
-        const { groupName, createdBy, users } = req.body;
-        const chatGroup = await new ChatGroup({
-            groupName: groupName,
-            createdBy: createdBy,
-            users: users,
+        // Create the new chat group
+        const chatGroup = new ChatGroup({
+            groupName,
+            createdBy,
+            users,
         });
-        for (let i = 0; i < users.length; i++) {
-            await User.findByIdAndUpdate(users[i], {
-                $push: { chatGroups: chatGroup._id },
-            });
-        }
-        chatGroup.save();
+
+        // Update all users in one query
+        await User.updateMany(
+            { _id: { $in: users } },
+            { $push: { chatGroups: chatGroup._id } }
+        );
+
+        // Save the chat group
+        await chatGroup.save();
 
         res.status(200).json(chatGroup);
     } catch (error) {
