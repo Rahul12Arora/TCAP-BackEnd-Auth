@@ -8,7 +8,7 @@ const Redis = require("ioredis");
 
 // new updation for aws
 const redis = new Redis({
-  host: '127.0.0.1',  // Explicitly specify the host
+  host: 'localhost',  // Explicitly specify the host
   port: 6379,         // Explicitly specify the port
 });
 
