@@ -36,7 +36,7 @@ socketConnection(io);
 // Use Express routes
 require("./startup/routes")(app);
 
-require('./startup/rabbitMqSetup/rabbitConnection.js')();
+require('./startup/rabbitMqSetup/Connection.js')();
 
 // Start the server
 server.listen(port, () => {
