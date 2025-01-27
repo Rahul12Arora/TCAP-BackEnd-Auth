@@ -6,7 +6,7 @@ const cors = require("cors");
 const port = 8080;
 const getDb = require('./startup/dbConnection')
 const dotenv = require("dotenv");
-
+require('./startup/logSetup.js')
 getDb();
 dotenv.config();
 const app = express();
@@ -35,6 +35,9 @@ socketConnection(io);
 
 // Use Express routes
 require("./startup/routes")(app);
+
+require('./startup/rabbitMqSetup/rabbitConnection.js')();
+
 // Start the server
 server.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
