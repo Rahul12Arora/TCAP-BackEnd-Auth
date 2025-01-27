@@ -94,4 +94,25 @@ router.get("/getAllChatGroupOfAUser/:userId", async (req, res) => {
   }
 });
 
+/**
+ * Endpoint to get and send friend request 
+ */
+router.post("/send-friend-request", async (req, res) => {
+  try {
+      /**
+       * !1. Schema yet to design for sending friend request
+       * !2. Logic to write to add friend and send a friend request
+       */
+      let { sendFriendRequestToUser } = req.body
+      // const { userId } = req.params;
+      const userDetails = await User.findById({_id: sendFriendRequestToUser}).select("name email active");
+      // userDetails.password = "";
+
+      res.status(200).json(userDetails);
+  } catch (error) {
+      console.error("Error -> ", error);
+      res.status(400).json(error);
+  }
+});
+
 module.exports = router;
