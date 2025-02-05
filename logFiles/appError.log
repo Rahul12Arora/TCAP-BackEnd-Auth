@@ -52,3 +52,7 @@
     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1159:16)
 2025-01-27T11:12:21.719Z - ERROR: (node:11549) [MONGOOSE] DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false` by default in Mongoose 7. Use `mongoose.set('strictQuery', false);` if you want to prepare for this change. Or use `mongoose.set('strictQuery', true);` to suppress this warning.
 (Use `node --trace-deprecation ...` to show where the warning was created)
+2025-01-27T13:57:29.134Z - ERROR: (node:34671) [MONGOOSE] DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false` by default in Mongoose 7. Use `mongoose.set('strictQuery', false);` if you want to prepare for this change. Or use `mongoose.set('strictQuery', true);` to suppress this warning.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-01-29T05:49:52.963Z - ERROR: (node:42161) [MONGOOSE] DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false` by default in Mongoose 7. Use `mongoose.set('strictQuery', false);` if you want to prepare for this change. Or use `mongoose.set('strictQuery', true);` to suppress this warning.
+(Use `node --trace-deprecation ...` to show where the warning was created)

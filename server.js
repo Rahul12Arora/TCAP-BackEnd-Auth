@@ -6,6 +6,7 @@ const cors = require("cors");
 const port = 8080;
 const getDb = require('./startup/dbConnection')
 const dotenv = require("dotenv");
+const apiLogger = require('./startup/apiLogger.js');
 require('./startup/logSetup.js')
 getDb();
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(cors({
     origin: "*", // Allow all origins during development
     methods: ["GET", "POST", "PUT", "DELETE"],
 }))
+app.use(apiLogger)
 
 // Create HTTP server using Express
 const server = http.createServer(app);

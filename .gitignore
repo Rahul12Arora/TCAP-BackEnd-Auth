@@ -6,6 +6,11 @@ node_modules*
 /.pnp
 .pnp.js
 
+# logs
+*.log
+appConsole.log
+appError.log
+
 # testing
 /coverage
 

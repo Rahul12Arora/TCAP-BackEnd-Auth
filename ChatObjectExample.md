@@ -11,6 +11,7 @@ Group Chat = {
         updatedAt: "2024-12-18T18:42:29.623Z"
         __v: 0
         _id: "675d244737f2010d2af4b4f8"
+        flag : 'update'
     }
 }
 
