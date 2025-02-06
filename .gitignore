@@ -8,8 +8,6 @@ node_modules*
 
 # logs
 *.log
-appConsole.log
-appError.log
 
 # testing
 /coverage
